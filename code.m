@@ -1,7 +1,7 @@
 
 
 % Read and display the image
-img = imread('iitr.jpeg');
+img = imread('real_img.jpeg');
 imshow(img);
 
 % Convert the image to grayscale and display it
