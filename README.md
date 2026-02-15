@@ -27,7 +27,7 @@ img = imread('real_img.jpeg');
 imshow(img);
 ```
 
-This section reads the original color image (`real_img.jpeg`) from the disk and displays it. The image is stored as a matrix in the variable `img`.
+This section reads the original color image [real_img.jpeg](real_img.jpeg) from the disk and displays it. The image is stored as a matrix in the variable `img`.
 
 ### 2. Converting to Grayscale
 
