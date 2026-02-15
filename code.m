@@ -63,22 +63,29 @@ imwrite(sns_img,'salt&pepper_img.png')
 % imwrite(median_7,"median_7.png")
 
 % Using a 3x3 Gaussian filter in the image
-gauss_kernel3 = fspecial('gaussian', [3 3], 1);
-gauss_3 = imfilter(sns_img, gauss_kernel3, 'replicate');
-figure; imshow(gauss_3);
-title('Gaussian Filter 3x3');
-imwrite(gauss_3,"gauss_3.png")
+% gauss_kernel3 = fspecial('gaussian', [3 3], 1);
+% gauss_3 = imfilter(sns_img, gauss_kernel3, 'replicate');
+% figure; imshow(gauss_3);
+% title('Gaussian Filter 3x3');
+% imwrite(gauss_3,"gauss_3.png")
 
-% Using a 5x5 Gaussian filter in the image
-gauss_kernel5 = fspecial('gaussian', [5 5], 1);
-gauss_5 = imfilter(sns_img, gauss_kernel5, 'replicate');
-figure; imshow(gauss_5);
-title('Gaussian Filter 5x5');
-imwrite(gauss_5,"gauss_5.png")
+% % Using a 5x5 Gaussian filter in the image
+% gauss_kernel5 = fspecial('gaussian', [5 5], 1);
+% gauss_5 = imfilter(sns_img, gauss_kernel5, 'replicate');
+% figure; imshow(gauss_5);
+% title('Gaussian Filter 5x5');
+% imwrite(gauss_5,"gauss_5.png")
 
-% Using a 7x7 Gaussian filter in the image
-gauss_kernel7 = fspecial('gaussian', [7 7], 1);
-gauss_7 = imfilter(sns_img, gauss_kernel7, 'replicate');
-figure; imshow(gauss_7);
-title('Gaussian Filter 7x7');
-imwrite(gauss_7,"gauss_7.png")
+% % Using a 7x7 Gaussian filter in the image
+% gauss_kernel7 = fspecial('gaussian', [7 7], 1);
+% gauss_7 = imfilter(sns_img, gauss_kernel7, 'replicate');
+% figure; imshow(gauss_7);
+% title('Gaussian Filter 7x7');
+% imwrite(gauss_7,"gauss_7.png")
+
+% Using a Laplacian filter in the image
+lap_kernel = fspecial('laplacian', 0.2);
+lap_img = imfilter(sns_img, lap_kernel, 'replicate');
+figure; imshow(lap_img, []);
+title('Laplacian Filter');
+imwrite(lap_img,"lap_img.png")
