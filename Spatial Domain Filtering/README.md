@@ -1,6 +1,5 @@
-# Image Processing Repository
-
-This repository contains MATLAB for demonstrating various image processing techniques, including grayscale conversion, noise addition, and image filtering operations.
+# Spatial Domain Filtering
+Spatial domain filtering is a fundamental technique in image processing that involves applying filters directly to the pixel values of an image. This project demonstrates various spatial domain filtering techniques, including mean filtering, median filtering, Gaussian filtering, Laplacian filtering, and Sobel filtering. The code is implemented in MATLAB and processes a sample image by adding noise and applying different filters to observe their effects.
 
 ## Overview
 
@@ -8,7 +7,7 @@ This project showcases fundamental image processing operations commonly used in 
 - Load and process images
 - Convert images to different formats (grayscale, double precision)
 - Add different types of noise to images (Gaussian, Salt & Pepper)
-- Apply various filtering techniques (Mean filter, Median filter)
+- Apply various filtering techniques (Mean filter, Median filter, Gaussian filter, Laplacian filter, Sobel filter)
 
 ## Requirements
 
@@ -31,8 +30,7 @@ This section reads the original color image [real_img.jpeg](real_img.jpeg) from 
 
 ### 2. Converting to Grayscale
 
-```
-matlab
+```matlab
 gray_img = rgb2gray(img);
 imshow(gray_img);
 imwrite(gray_img,'gray_img.png')
@@ -180,6 +178,112 @@ A 7x7 median filter provides the strongest noise reduction among the median filt
 
 **Output:** [median_7.png](median_7.png)
 
+### 8. Gaussian Filter
+
+The Gaussian filter is a smoothing filter that uses a Gaussian (bell-shaped) function as the kernel. It is more effective at smoothing while preserving edges better than the mean filter. It is implemented using `fspecial('gaussian', [size], sigma)`.
+
+#### 3x3 Gaussian Filter
+
+```
+matlab
+gauss_kernel3 = fspecial('gaussian', [3 3], 1);
+gauss_3 = imfilter(sns_img, gauss_kernel3, 'replicate');
+imshow(gauss_3);
+imwrite(gauss_3,"gauss_3.png")
+```
+
+A 3x3 Gaussian kernel with sigma = 1 provides mild smoothing while preserving edges better than a mean filter.
+
+**Output:** [gauss_3.png](gauss_3.png)
+
+#### 5x5 Gaussian Filter
+
+```
+matlab
+gauss_kernel5 = fspecial('gaussian', [5 5], 1);
+gauss_5 = imfilter(sns_img, gauss_kernel5, 'replicate');
+imshow(gauss_5);
+imwrite(gauss_5,"gauss_5.png")
+```
+
+A 5x5 Gaussian kernel provides more smoothing than the 3x3 filter while still maintaining good edge preservation.
+
+**Output:** [gauss_5.png](gauss_5.png)
+
+#### 7x7 Gaussian Filter
+
+```
+matlab
+gauss_kernel7 = fspecial('gaussian', [7 7], 1);
+gauss_7 = imfilter(sns_img, gauss_kernel7, 'replicate');
+imshow(gauss_7);
+imwrite(gauss_7,"gauss_7.png")
+```
+
+A 7x7 Gaussian kernel provides the strongest smoothing among the Gaussian filters demonstrated.
+
+**Output:** [gauss_7.png](gauss_7.png)
+
+### 9. Laplacian Filter
+
+The Laplacian filter is an edge detection filter that highlights regions of rapid intensity change. It is commonly used for edge detection and image sharpening.
+
+```
+matlab
+lap_kernel = fspecial('laplacian', 0.2);
+lap_img = imfilter(sns_img, lap_kernel, 'replicate');
+imshow(lap_img, []);
+imwrite(lap_img,"lap_img.png")
+```
+
+The `fspecial('laplacian', 0.2)` creates a Laplacian kernel with alpha = 0.2, which controls the shape of the Laplacian filter. The Laplacian filter computes the second derivative of the image and is sensitive to edges and noise.
+
+**Output:** [lap_img.png](lap_img.png)
+
+### 10. Sobel Filter (Edge Detection)
+
+The Sobel filter is used for edge detection. It computes the gradient of image intensity to highlight edges. It uses two kernels: one for horizontal changes and one for vertical changes.
+
+#### Horizontal Edges (Sobel X)
+
+```
+matlab
+sobel_x = fspecial('sobel');
+edge_x = imfilter(sns_img, sobel_x, 'replicate');
+imshow(edge_x, []);
+imwrite(edge_x,"edge_x.png");
+```
+
+The horizontal Sobel filter detects edges in the horizontal direction (left-to-right transitions).
+
+**Output:** [edge_x.png](edge_x.png)
+
+#### Vertical Edges (Sobel Y)
+
+```
+matlab
+sobel_y = sobel_x';
+edge_y = imfilter(sns_img, sobel_y, 'replicate');
+imshow(edge_y, []);
+imwrite(edge_y,"edge_y.png");
+```
+
+The vertical Sobel filter (transpose of horizontal) detects edges in the vertical direction (top-to-bottom transitions).
+
+**Output:** [edge_y.png](edge_y.png)
+
+#### Gradient Magnitude
+
+```
+matlab
+sobel_grad = sqrt(edge_x.^2+edge_y.^2);
+imshow(sobel_grad,[]);
+imwrite(sobel_grad,"sobel_grad.png");
+```
+
+The gradient magnitude combines the horizontal and vertical edge responses to produce a single edge map. It computes the magnitude of the gradient at each pixel using the formula: √(Gx² + Gy²).
+
+**Output:** [sobel_grad.png](sobel_grad.png)
 
 ## Key Observations
 
@@ -187,7 +291,13 @@ A 7x7 median filter provides the strongest noise reduction among the median filt
 
 2. **Median Filter**: Particularly effective for salt & pepper noise as it preserves edges better than mean filtering. It removes isolated noise pixels while maintaining sharp edges.
 
-3. **Noise Comparison**: The combination of Gaussian and salt & pepper noise represents a challenging scenario, demonstrating the effectiveness of different filtering approaches.
+3. **Gaussian Filter**: Provides better smoothing than mean filter while preserving edges better due to the weighted averaging (center pixels have higher weights). The Gaussian function gives more importance to central pixels.
+
+4. **Laplacian Filter**: Used for edge detection and image sharpening. It highlights rapid intensity changes but is sensitive to noise. Often used in combination with other filters for edge enhancement.
+
+5. **Sobel Filter**: Excellent for edge detection in specific directions. The horizontal Sobel detects vertical edges, while vertical Sobel detects horizontal edges. The gradient magnitude provides a combined edge map.
+
+6. **Noise Comparison**: The combination of Gaussian and salt & pepper noise represents a challenging scenario, demonstrating the effectiveness of different filtering approaches.
 
 ## Running the Code
 
