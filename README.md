@@ -40,7 +40,7 @@ imwrite(gray_img,'gray_img.png')
 
 The `rgb2gray()` function converts the RGB color image to a grayscale image. This is done by eliminating the hue and saturation information while retaining the luminance. The grayscale image is then saved as `gray_img.png`.
 
-**Output:** `gray_img.png`
+**Output:** [gray_img.png](gray_img.png)
 
 ### 3. Converting to Double Precision
 
@@ -53,7 +53,7 @@ imwrite(double_img,'double_img.png')
 
 The `im2double()` function converts the image from its default data type (usually uint8) to double precision (floating-point values between 0 and 1). This is necessary for many image processing operations to ensure accurate mathematical computations.
 
-**Output:** `double_img.png`
+**Output:** [double_img.png](double_img.png)
 
 ### 4. Adding Gaussian Noise
 
@@ -74,7 +74,7 @@ Gaussian noise is added to the image with:
 
 This creates a noisy image where pixel values are randomly distributed around their original values following a normal (Gaussian) distribution.
 
-**Output:** `gauss_img.png`
+**Output:** [gauss_img.png](gauss_img.png)
 
 ### 5. Adding Salt & Pepper Noise
 
@@ -89,7 +89,7 @@ Salt & pepper noise is added to the already noisy Gaussian image. This type of n
 - Noise density = 0.05 (5% of pixels are affected)
 - Both "salt" (white) and "pepper" (black) pixels are added
 
-**Output:** `salt&pepper_img.png`
+**Output:** [salt&pepper_img.png](salt&pepper_img.png)
 
 ### 6. Mean Filter (Average Filter)
 
@@ -107,7 +107,7 @@ imwrite(mean_3,"mean_3.png")
 
 A 3x3 kernel (all values = 1/9) is created and applied to the noisy image. This is the smallest mean filter that considers 8 neighbors plus the center pixel.
 
-**Output:** `mean_3.png`
+**Output:** [mean_3.png](mean_3.png)
 
 #### 5x5 Mean Filter
 
@@ -121,7 +121,7 @@ imwrite(mean_5,"mean_5.png")
 
 A 5x5 kernel (all values = 1/25) provides more smoothing than the 3x3 filter but may blur details more.
 
-**Output:** `mean_5.png`
+**Output:** [mean_5.png](mean_5.png)
 
 #### 7x7 Mean Filter
 
@@ -135,7 +135,7 @@ imwrite(mean_7,"mean_7.png")
 
 A 7x7 kernel provides the most smoothing among the mean filters demonstrated, but also results in the most blurring of image details.
 
-**Output:** `mean_7.png`
+**Output:** [mean_7.png](mean_7.png)
 
 ### 7. Median Filter
 
@@ -152,7 +152,7 @@ imwrite(median_3,"median_3.png")
 
 A 3x3 median filter processes each pixel by considering a 3x3 neighborhood and replacing the center pixel with the median value.
 
-**Output:** `median_3.png`
+**Output:** [median_3.png](median_3.png)
 
 #### 5x5 Median Filter
 
@@ -165,7 +165,7 @@ imwrite(median_5,"median_5.png")
 
 A 5x5 median filter provides more noise reduction but may start to blur fine details.
 
-**Output:** `median_5.png`
+**Output:** [median_5.png](median_5.png)
 
 #### 7x7 Median Filter
 
@@ -178,7 +178,7 @@ imwrite(median_7,"median_7.png")
 
 A 7x7 median filter provides the strongest noise reduction among the median filters, but may cause more blur.
 
-**Output:** `median_7.png`
+**Output:** [median_7.png](median_7.png)
 
 
 ## Key Observations
